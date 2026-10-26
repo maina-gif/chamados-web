@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Painel interno de controle de chamados de TI da TechServ" />
+  <title>TechServ · Chamados de TI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">TS</span><span><strong>TechServ</strong><small>Central de TI</small></span></div>
+      <div class="sidebar-label">Operação</div>
+      <nav><a class="nav-link active" href="#painel"><span>▦</span> Painel</a><a class="nav-link" href="#novo"><span>＋</span> Novo chamado</a></nav>
+      <div class="sidebar-footer"><span class="status-dot"></span><span>Sistema operacional<small>Dados sincronizados</small></span></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow">CENTRAL DE ATENDIMENTO</p><h1>Chamados de TI</h1></div><div class="topbar-meta"><span class="live-pill"><i></i> Operação ativa</span><span class="date-label" id="today"></span></div></header>
+      <section class="hero"><div><span class="hero-kicker">VISÃO GERAL</span><h2>Acompanhe o que precisa<br /><em>de atenção.</em></h2><p>Registre, priorize e resolva solicitações em um só lugar.</p></div><button class="primary-button" id="open-form"><span>＋</span> Novo chamado</button></section>
+      <section class="metrics" aria-label="Resumo por status"><article class="metric-card metric-total"><div class="metric-icon">◌</div><div><span>Total de chamados</span><strong id="metric-total">0</strong></div><small>Base completa</small></article><article class="metric-card"><div class="metric-icon amber">◷</div><div><span>Em aberto</span><strong id="metric-aberto">0</strong></div><small>Aguardando triagem</small></article><article class="metric-card"><div class="metric-icon blue">◒</div><div><span>Em atendimento</span><strong id="metric-atendimento">0</strong></div><small>Em andamento</small></article><article class="metric-card"><div class="metric-icon green">✓</div><div><span>Concluídos</span><strong id="metric-concluido">0</strong></div><small>Resolvidos</small></article></section>
+      <section class="workspace" id="painel"><div class="section-heading"><div><span class="section-kicker">ACOMPANHAMENTO</span><h2>Fila de chamados</h2></div><button class="ghost-button" id="refresh">↻ Atualizar</button></div>
+        <div class="toolbar"><label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Buscar por ID ou solicitante..." /></label><select id="filter-prioridade"><option value="">Todas as prioridades</option><option value="alta">Alta prioridade</option><option value="média">Média prioridade</option><option value="baixa">Baixa prioridade</option></select><select id="filter-status"><option value="">Todos os status</option><option value="aberto">Aberto</option><option value="em atendimento">Em atendimento</option><option value="concluído">Concluído</option></select></div>
+        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Solicitante</th><th>Descrição</th><th>Prioridade</th><th>Status</th><th>Abertura</th><th></th></tr></thead><tbody id="ticket-list"></tbody></table><div class="empty-state" id="empty-state"><div>⌁</div><strong>Nenhum chamado encontrado</strong><span>Ajuste os filtros ou cadastre uma nova solicitação.</span></div></div>
+      </section>
+      <section class="quick-query"><div><span class="section-kicker">CONSULTA RÁPIDA</span><h2>Localizar chamado</h2><p>Consulte todos os detalhes usando o identificador.</p></div><form id="query-form"><input id="query-id" type="number" min="1" placeholder="Ex.: 1042" /><button class="secondary-button">Consultar</button></form></section>
+      <footer>TechServ <span>·</span> Sistema de Chamados de TI <span>·</span> 2026</footer>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close-button" id="close-modal">×</button><span class="section-kicker">NOVA SOLICITAÇÃO</span><h2 id="modal-title">Registrar chamado</h2><p class="modal-description">Preencha os dados para iniciar o atendimento.</p><form id="ticket-form"><label>Solicitante<input name="solicitante" required minlength="3" placeholder="Nome completo" /></label><label>Descrição<textarea name="descricao" required minlength="10" rows="4" placeholder="Descreva o problema ou solicitação"></textarea></label><label>Prioridade<select name="prioridade" required><option value="">Selecione uma prioridade</option><option value="alta">Alta</option><option value="média">Média</option><option value="baixa">Baixa</option></select></label><button class="primary-button full-width">Criar chamado</button></form></section></div>
+  <div class="modal-backdrop" id="detail-backdrop"><section class="modal detail-modal"><button class="close-button" id="close-detail">×</button><div id="detail-content"></div></section></div>
+  <div class="toast" id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

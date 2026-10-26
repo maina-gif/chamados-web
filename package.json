@@ -1,0 +1,17 @@
+{
+  "name": "sistema-chamados-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Painel web de chamados de TI da TechServ",
+  "type": "commonjs",
+  "packageManager": "npm@10.9.2",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^4.21.2",
+    "mysql2": "^3.11.5"
+  }
+}
